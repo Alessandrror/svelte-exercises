@@ -38,5 +38,5 @@ const getChars = async (): Promise<Characters> => {
   return res.data
 }
 
-export type { Characters,  }
+export type { Characters, Result }
 export { getChars }
