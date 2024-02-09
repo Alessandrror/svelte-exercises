@@ -7,8 +7,8 @@
 </script>
 
 <slot>
-  <div class="w-80 p-2 text-center">
-    <img src={ char.image } alt={ `${char.name} Picture` }>
-    <span class="text-2xl text-black">{ char.name }</span>
+  <div class="p-2 text-center bg-slate-700 rounded-xl">
+    <img src={ char.image } alt={ `${char.name} Picture` } class="rounded-xl" >
+    <span class="text-2xl text-balance">{ char.name }</span>
   </div>
 </slot>

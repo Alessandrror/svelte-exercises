@@ -4,6 +4,8 @@
 	import Boxes from "$lib/components/grid/boxes.svelte"
 </script>
 
-<Header></Header>
-<Search></Search>
-<Boxes></Boxes>
+<Header />
+<Search />
+<main class="max-w-full flex justify-center">
+	<Boxes />
+</main>

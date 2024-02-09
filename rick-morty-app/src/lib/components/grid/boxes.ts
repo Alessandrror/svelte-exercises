@@ -38,5 +38,10 @@ const getChars = async (): Promise<Characters> => {
   return res.data
 }
 
+const searchChars = async (name: string): Promise<Characters> => {
+  const res = await axios.get<Characters>(`https://rickandmortyapi.com/api/character/?${name}`)
+  return res.data
+}
+
 export type { Characters, Result }
-export { getChars }
+export { getChars, searchChars }
