@@ -1,6 +1,6 @@
 import axios from "axios"
 
-type Result = {
+type ResultCharacter = {
   id: number,
   name: string,
   status: string,
@@ -21,6 +21,26 @@ type Result = {
   created: string
 }
 
+type ResultLocation = {
+  id: number,
+  name: string,
+  type: string,
+  dimension: string,
+  residents: string[]
+  url: string,
+  created: string
+}
+
+type ResultEpisode = {
+  id: number,
+  name: string,
+  air_Date: string,
+  episode: string,
+  characters: string[]
+  url: string,
+  created: string
+}
+
 type Info = {
   count: number,
   pageS: number,
@@ -30,11 +50,23 @@ type Info = {
 
 type Characters = {
   info: Info,
-  results: Result[]
+  results: ResultCharacter[]
 }
 
-const getChars = async (): Promise<Characters> => {
-  const res = await axios.get<Characters>('https://rickandmortyapi.com/api/character')
+type Locations = {
+  info: Info,
+  results: ResultLocation[]
+}
+
+type Episodes = {
+  info: Info,
+  results: ResultEpisode[]
+}
+
+// const getCollections = async (path: string): Promise<Characters | Locations | Episodes> => {
+//   const res = await axios.get<Characters | Locations | Episodes>(`https://rickandmortyapi.com/api/${path}`)
+const getCollections = async (path: string): Promise<Characters> => {
+  const res = await axios.get<Characters>(`https://rickandmortyapi.com/api/${path}`)
   return res.data
 }
 
@@ -43,5 +75,5 @@ const searchChars = async (name: string): Promise<Characters> => {
   return res.data
 }
 
-export type { Characters, Result }
-export { getChars, searchChars }
+export type { Characters, Locations, Episodes, ResultCharacter, ResultLocation, ResultEpisode }
+export { getCollections, searchChars }
