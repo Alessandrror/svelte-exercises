@@ -1,7 +1,7 @@
 <script>
-	import Header from "$lib/components/header/header.svelte"
-	import Search from "$lib/components/search/search.svelte"
-	import Boxes from "$lib/components/grid/boxes.svelte"
+	import Header from "../../components/header/header.svelte"
+	import Search from "../../components/search/search.svelte"
+	import Boxes from "../../components/grid/boxes.svelte"
 </script>
 
 <Header />
