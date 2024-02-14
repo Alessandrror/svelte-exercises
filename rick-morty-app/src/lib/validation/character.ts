@@ -27,4 +27,5 @@ export const CharacterSchema = z.object({
   results: z.array(ResultCharacterSchema)
 })
 
+export type Character = z.infer<typeof ResultCharacterSchema>
 export type Characters = z.infer<typeof CharacterSchema>

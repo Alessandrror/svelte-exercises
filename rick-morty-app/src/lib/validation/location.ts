@@ -16,4 +16,5 @@ export const LocationSchema = z.object({
   results: z.array(ResultLocationSchema)
 })
 
+export type Location = z.infer<typeof ResultLocationSchema>
 export type Locations = z.infer<typeof LocationSchema>

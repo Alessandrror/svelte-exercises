@@ -1,11 +1,11 @@
 import axios from "axios"
 import { ZodSchema } from "zod"
-import { CharacterSchema } from "./validation/character"
-import { LocationSchema } from "./validation/location"
-import { EpisodeSchema } from "./validation/episode"
-import type { Characters } from "./validation/character"
-import type { Locations } from "./validation/location"
-import type { Episodes } from "./validation/episode"
+import { CharacterSchema, ResultCharacterSchema } from "./validation/character"
+import { LocationSchema, ResultLocationSchema } from "./validation/location"
+import { EpisodeSchema, ResultEpisodeSchema } from "./validation/episode"
+import type { Character, Characters } from "./validation/character"
+import type { Locations, Location } from "./validation/location"
+import type { Episodes, Episode } from "./validation/episode"
 
 type SchemeMap = {
   [key: string]: ZodSchema<Characters | Locations | Episodes>
@@ -36,6 +36,45 @@ export const getCollections = async (path: string): Promise<Characters | Locatio
     throw new Error('Connection failed!')
   }
 
+}
+
+export const getCharacter = async (path: string): Promise<Character> => {
+  try {
+    const { data } = await axios.get<Character>(`https://rickandmortyapi.com/api/${path}`)
+    const { success } = ResultCharacterSchema.safeParse(data)
+
+    if (!success) throw new Error('Data is not correct!')
+
+    return data
+  } catch (err) {
+    throw new Error('Connection failed!')
+  }
+}
+
+export const getLocation = async (path: string): Promise<Location> => {
+  try {
+    const { data } = await axios.get<Location>(`https://rickandmortyapi.com/api/${path}`)
+    const { success } = ResultLocationSchema.safeParse(data)
+
+    if (!success) throw new Error('Data is not correct!')
+
+    return data
+  } catch (err) {
+    throw new Error('Connection failed!')
+  }
+}
+
+export const getEpisode = async (path: string): Promise<Episode> => {
+  try {
+    const { data } = await axios.get<Episode>(`https://rickandmortyapi.com/api/${path}`)
+    const { success } = ResultEpisodeSchema.safeParse(data)
+
+    if (!success) throw new Error('Data is not correct!')
+
+    return data
+  } catch (err) {
+    throw new Error('Connection failed!')
+  }
 }
 
 // As a generic ColletionType for any APIResponse
