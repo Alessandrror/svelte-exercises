@@ -20,11 +20,11 @@
 </script>
 
 <slot>
-  <div id={ key } class="p-2 text-center bg-slate-700 rounded-xl btn" role="button">
+  <div id={ key } class="p-2 text-center h-full bg-slate-700 rounded-xl btn" role="button">
     {#if selection }
       {#if isCharacter}
       <a href={ `/character/${selection.id}` }>
-        <img src={ selection.image } alt={ `${selection.name} Picture` } class="rounded-xl" >
+        <img src={ selection.image } alt={ `${selection.name} Picture` } class="rounded-xl w-[300px] aspect-square" >
         <span class="text-2xl text-balance">{ selection.name }</span>
       </a>
       {/if}

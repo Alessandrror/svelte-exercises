@@ -8,20 +8,11 @@
 
   const episodePath = `episode/${$page.url.pathname.split('/').pop()}`
 
-  const episodeCharacters = async (path: string) => {
-    const { characters } = await getEpisode(path)
-    return characters
-  }
-
-  // characters.map(async character => {
-  //     return await getCharacter(`${character.split('/').slice(-2).join('/')}`)
-  //   })
-
 </script>
 
 <Header />
 <!-- <Search /> -->
-<main>
+<main class="grid place-content-center gap-20">
   <section class="grid grid-cols sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 place-items-center p-10 m-10 max-w-7xl">
     {#await getEpisode(episodePath) then { name, air_date, episode, characters }}
       {#each characters as character, i }

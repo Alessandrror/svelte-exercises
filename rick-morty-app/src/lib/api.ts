@@ -1,5 +1,6 @@
 import axios from "axios"
 import { ZodSchema } from "zod"
+import { API } from "$lib"
 import { CharacterSchema, ResultCharacterSchema } from "./validation/character"
 import { LocationSchema, ResultLocationSchema } from "./validation/location"
 import { EpisodeSchema, ResultEpisodeSchema } from "./validation/episode"
@@ -24,7 +25,7 @@ export const getCollections = async (path: string): Promise<Characters | Locatio
   if (!collectionSchema) throw new Error('Invalid path')
 
   try {
-    const { data } = await axios.get<Characters | Locations | Episodes>(`https://rickandmortyapi.com/api/${path}`)
+    const { data } = await axios.get<Characters | Locations | Episodes>(`${API}/${path}`)
 
     const { success } = collectionSchema.safeParse(data)
 
@@ -40,7 +41,7 @@ export const getCollections = async (path: string): Promise<Characters | Locatio
 
 export const getCharacter = async (path: string): Promise<Character> => {
   try {
-    const { data } = await axios.get<Character>(`https://rickandmortyapi.com/api/${path}`)
+    const { data } = await axios.get<Character>(`${API}/${path}`)
     const { success } = ResultCharacterSchema.safeParse(data)
 
     if (!success) throw new Error('Data is not correct!')
@@ -53,7 +54,7 @@ export const getCharacter = async (path: string): Promise<Character> => {
 
 export const getLocation = async (path: string): Promise<Location> => {
   try {
-    const { data } = await axios.get<Location>(`https://rickandmortyapi.com/api/${path}`)
+    const { data } = await axios.get<Location>(`${API}/${path}`)
     const { success } = ResultLocationSchema.safeParse(data)
 
     if (!success) throw new Error('Data is not correct!')
@@ -66,7 +67,7 @@ export const getLocation = async (path: string): Promise<Location> => {
 
 export const getEpisode = async (path: string): Promise<Episode> => {
   try {
-    const { data } = await axios.get<Episode>(`https://rickandmortyapi.com/api/${path}`)
+    const { data } = await axios.get<Episode>(`${API}/${path}`)
     const { success } = ResultEpisodeSchema.safeParse(data)
 
     if (!success) throw new Error('Data is not correct!')
